@@ -1,5 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import {
+  useDimensions,
+  useDeviceOrientation,
+} from "@react-native-community/hooks";
+import {
   StyleSheet,
   Text,
   View,
@@ -11,15 +15,25 @@ import {
   TouchableNativeFeedback,
   Button,
   Alert,
+  Platform,
+  Dimensions,
 } from "react-native";
 
 export default function App() {
   const handlePress = () => {
     console.log("clicked");
   };
+  const { landscape, portrait } = useDeviceOrientation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, containerStyle]}>
+      <View
+        style={{
+          backgroundColor: "dodgerblue",
+          width: "100%",
+          height: landscape ? "100%" : "30%",
+        }}
+      ></View>
       <Text onPress={handlePress}>
         Open up App.js to start working on app!ascasa sdasdasdas dasdadasdaadsa
       </Text>
@@ -39,25 +53,7 @@ export default function App() {
           Alert.prompt("My title", "my message", (text) => console.log(text))
         }
       />
-      <TouchableNativeFeedback
-        onPress={() => {
-          console.log(handlePress);
-        }}
-      >
-        <Image
-          // fadeDuration={10000}
-          // blurRadius={10}
-          source={{
-            width: 200,
-            height: 200,
-            uri: "https://picsum.photos/200/300",
-          }}
-        />
-      </TouchableNativeFeedback>
-      <View
-        style={{ width: 200, height: 70, backgroundColor: "dodgerblue" }}
-      ></View>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
@@ -69,7 +65,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
+    paddingTop: Platform.OS === "android" ? 40 : 0,
+    // justifyContent: "center",
+    // textAlign: "center",
   },
 });
