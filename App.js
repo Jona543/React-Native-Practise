@@ -26,35 +26,44 @@ export default function App() {
   const { landscape, portrait } = useDeviceOrientation();
 
   return (
-    <SafeAreaView style={[styles.container, containerStyle]}>
+    <View
+      style={{
+        backgroundColor: "white",
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+        // flexWrap: "wrap",
+      }}
+    >
       <View
         style={{
           backgroundColor: "dodgerblue",
-          width: "100%",
-          height: landscape ? "100%" : "30%",
+
+          width: 100,
+          flexShrink: 1,
+          height: 100,
         }}
-      ></View>
-      <Text onPress={handlePress}>
-        Open up App.js to start working on app!ascasa sdasdasdas dasdadasdaadsa
-      </Text>
-      <Button
-        color="green"
-        title="click me"
-        onPress={() =>
-          Alert.alert("my title", "my message", [
-            { text: "yes", onPress: () => console.log("yes") },
-            { text: "no", onPress: () => console.log("no") },
-          ])
-        }
       />
-      <Button
-        title="also click me"
-        onPress={() =>
-          Alert.prompt("My title", "my message", (text) => console.log(text))
-        }
+      <View
+        style={{
+          backgroundColor: "gold",
+          width: 100,
+          height: 100,
+          top: 20,
+          left: 20,
+          position: "relative",
+        }}
       />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+      <View
+        style={{
+          backgroundColor: "tomato",
+          width: 100,
+          height: 100,
+        }}
+      />
+    </View>
   );
 }
 
